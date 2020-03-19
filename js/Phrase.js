@@ -71,4 +71,4 @@ class Phrase {
 // const prueba = new Phrase("How Are You");
 // prueba.addPhraseToDisplay();
 
-// prueba.showMatchedLetter(prueba.checkLetter("o"));
+// prueba.showMatchedLetter(prueba.checkLetter("u"));
