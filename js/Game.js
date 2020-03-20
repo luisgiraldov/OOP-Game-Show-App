@@ -8,6 +8,7 @@ class Game {
         this.missed = 0;
         this.phrases = ["Think Less Do More", "Do All Things With Love", "Think Deeply", "Speak Gently", "Love Much", "Laugh A Lot", "Work Hard", "Be Kind"];
         this.activePhrase = null;
+        this.playing = false;
     }
 
     /***
@@ -29,7 +30,9 @@ class Game {
         const overlayScreen = document.getElementById("overlay");
         overlayScreen.style.display = "none";
         this.activePhrase = new Phrase(this.getRandomPhrase());
+        this.activePhrase.removePhrase();
         this.activePhrase.addPhraseToDisplay();
+        this.playing = true;
     }
 
     /***
@@ -48,9 +51,6 @@ class Game {
         } else if(message === "You Lost!") {
             overlayScreen.className = "lose";
         }
-        this.activePhrase.removePhrase();
-        this.resetKeyboard();
-        this.resetHearts();
     }
 
     /***
@@ -89,24 +89,40 @@ class Game {
     * a letter in the phrase, and then directs the game based on a correct or incorrect guess
     ***/
     handleInteraction(event) {
-        if(event.target.tagName === "BUTTON"){
-            const matches = this.activePhrase.checkLetter(event.target.textContent);
-            event.target.setAttribute("disabled", true);
-            if(matches.length > 0){
-                event.target.setAttribute("class", "chosen");
-                this.activePhrase.showMatchedLetter(matches);
-                if(this.checkForWin()){
-                    this.gameOver("You Win!");
-                }
-            } else {
-                event.target.setAttribute("class", "wrong");
+        let target = null,
+            matches = null;
+        if(event.type === "keydown"){
+            //event.code.replace("Key", "").toLowerCase(); gets the KeyCode, replace the "key" from the string and lowercase the letter
+            const letterPressed = event.code.replace("Key", "").toLowerCase();
+            target = document.querySelector(`[data-key="${letterPressed}"]`);
+            matches = this.activePhrase.checkLetter(letterPressed);
+            console.log(target);
+            console.log(letterPressed);
+        }
+
+        if(event.type === "click"){
+            target = event.target;
+            matches = this.activePhrase.checkLetter(target.textContent);
+        }
+
+        if(matches && matches.length > 0){
+            target.setAttribute("class", "chosen");
+            this.activePhrase.showMatchedLetter(matches);
+            if(this.checkForWin()){
+                this.gameOver("You Win!");
+            }
+        } else {
+            if(!target.hasAttribute("disabled")){
+                target.setAttribute("class", "wrong");
                 this.removeLife();
             }
         }
+
+        target.setAttribute("disabled", true);
     } //end handleInteraction
 
     resetKeyboard() {
-        const buttons = Array.prototype.slice.call(document.querySelectorAll(".keyrow > button"));
+        const buttons = Array.prototype.slice.call(document.querySelectorAll("[data-key]"));
         buttons.map( button => {
             button.className = "key";
             if(button.hasAttribute("disabled")){
