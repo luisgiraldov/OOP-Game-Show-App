@@ -66,7 +66,16 @@ class Phrase {
             }
         });
     }
-}
+
+    /***
+    * `showMatchedLetter` method
+    * Remove all li elements from the Phrase ul element.
+    ***/
+    removePhrase(){
+        const ul = document.querySelector("#phrase > ul");
+        ul.innerHTML = "";
+    }
+} //end Phrase
 
 // const prueba = new Phrase("How Are You");
 // prueba.addPhraseToDisplay();

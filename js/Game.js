@@ -48,6 +48,9 @@ class Game {
         } else if(message === "You Lost!") {
             overlayScreen.className = "lose";
         }
+        this.activePhrase.removePhrase();
+        this.resetKeyboard();
+        this.resetHearts();
     }
 
     /***
@@ -88,7 +91,7 @@ class Game {
     handleInteraction(event) {
         if(event.target.tagName === "BUTTON"){
             const matches = this.activePhrase.checkLetter(event.target.textContent);
-            event.target.setAttribute("disable", true);
+            event.target.setAttribute("disabled", true);
             if(matches.length > 0){
                 event.target.setAttribute("class", "chosen");
                 this.activePhrase.showMatchedLetter(matches);
@@ -102,8 +105,23 @@ class Game {
         }
     } //end handleInteraction
 
+    resetKeyboard() {
+        const buttons = Array.prototype.slice.call(document.querySelectorAll(".keyrow > button"));
+        buttons.map( button => {
+            button.className = "key";
+            if(button.hasAttribute("disabled")){
+                button.removeAttribute("disabled");
+            }
+        });
+    }
 
-}
+    resetHearts() {
+        const img_Scoreboard = document.querySelectorAll("li.tries > img");
+        img_Scoreboard.forEach( img => img.setAttribute("src", "images/liveHeart.png"));
+        this.missed = 0;
+    }
 
-const probando = new Game();
-probando.startGame();
+} //end Game
+
+// const probando = new Game();
+// probando.startGame();
