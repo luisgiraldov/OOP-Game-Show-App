@@ -21,6 +21,7 @@ class Phrase {
     /***
     * `addPhraseToDisplay` method
     * adds letter placeholders to the display when the game starts. Each letter is presented by an empty box, one li element for each letter.
+    * modified to add js-hidden class to give animation to the phrase
     ***/
 
     addPhraseToDisplay() {
@@ -31,13 +32,12 @@ class Phrase {
             const li = document.createElement("LI");
             li.textContent = character;
             if(character !== " "){
-                li.setAttribute("class", `hide letter ${character}`);  
+                li.setAttribute("class", `js-hidden hide letter ${character}`);  
             } else {
-                li.setAttribute("class", "space");
+                li.setAttribute("class", "js-hidden space");
             }
             ul.appendChild(li);
         });
-        divPhrase.appendChild(ul);
     }
 
     

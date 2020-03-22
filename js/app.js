@@ -4,11 +4,17 @@
 
 (function(){
     const newGame = new Game();
+    const newAnimation = new Animation();
     const startBtn = document.getElementById("btn__reset");
     startBtn.addEventListener("click", () => {
         newGame.resetKeyboard();
         newGame.resetHearts();
-        newGame.startGame();
+        //giving time to reset keys
+        setTimeout(() => {
+            let done = false;
+            newGame.startGame();
+            newAnimation.typeWriter(document.querySelectorAll(".js-hidden"));
+        }, 150);
     });
 
     const keyboard = document.getElementById("qwerty");
@@ -23,4 +29,6 @@
             newGame.handleInteraction(event)
         }
     });
+    // console.log(typeof newAnimation);
+    newAnimation.typeWriter(document.querySelector("#overlay h2"));
 })();
