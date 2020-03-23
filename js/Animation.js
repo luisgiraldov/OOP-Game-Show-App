@@ -1,12 +1,14 @@
-
+/* Treehouse FSJS Techdegree
+ * Project 4 - OOP Game App
+ * Animation.js */
 class Animation {
 
-    // constructor(element){
-    //     this.element = element;
-    //     this.txt = this.element.textContent;
-    //     this.speed = 130;
-    //     this.element.textContent = "";
-    // }
+    /***
+    * `typeWriter` method
+    * @param {Object} element - holds the element where the animation it's going to take place
+    * this method uses setTimeout to add each character into the element creating a typing effect
+    * Effect learned from https://www.w3schools.com/howto/howto_js_typewriter.asp
+    ***/
     typeWriter(element) {
         let i = 0;
         let txt = "";
@@ -45,22 +47,4 @@ class Animation {
 
         executeTypeWriter();
     }
-
-
 } // end Animation
-    // let i = 0;
-    // const h2 = document.getElementById("prueba");
-    // const txt = h2.textContent;
-    // h2.textContent = "";
-    // const speed = 130;
-
-    // function typeWriter() {
-
-    //     if (i < txt.length) {
-    //         h2.textContent += txt.charAt(i);
-    //         i++;
-    //         setTimeout(typeWriter, speed);
-    //     }
-    // }
-
-    // typeWriter();

@@ -8,17 +8,6 @@ class Phrase {
     }
 
     /***
- 	* Generates 2D array of spaces. 
-    * @return  {Array}     An array of space objects
-    ***/
-   /***
-    * `addPhraseToDisplay` method
-    * Returns boolean value to check if the validation passed or not 
-    * @param {Object} eventOrElement - holds the object that fired the event or the element we need to validate
-    * adds letter placeholders to the display when the game starts. Each letter is presented by an empty box, one li element for each letter.
-    ***/
-
-    /***
     * `addPhraseToDisplay` method
     * adds letter placeholders to the display when the game starts. Each letter is presented by an empty box, one li element for each letter.
     * modified to add js-hidden class to give animation to the phrase
@@ -76,8 +65,3 @@ class Phrase {
         ul.innerHTML = "";
     }
 } //end Phrase
-
-// const prueba = new Phrase("How Are You");
-// prueba.addPhraseToDisplay();
-
-// prueba.showMatchedLetter(prueba.checkLetter("u"));

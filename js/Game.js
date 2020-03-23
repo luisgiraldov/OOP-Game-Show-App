@@ -48,9 +48,20 @@ class Game {
         gameOverMessage.textContent = message;
         if(message === "You Win!"){
             overlayScreen.className = "win";
+            if(gameOverMessage.classList.contains("loseColor")){
+                gameOverMessage.classList.remove("loseColor");
+            }
+            gameOverMessage.classList.add("winColor");
         } else if(message === "You Lost!") {
             overlayScreen.className = "lose";
+            if(gameOverMessage.classList.contains("winColor")){
+                gameOverMessage.classList.remove("winColor");
+            }
+            gameOverMessage.classList.add("loseColor");
         }
+
+        //reveal block effect
+        gameOverMessage.classList.add("reveal-block");
     }
 
     /***
@@ -96,8 +107,6 @@ class Game {
             const letterPressed = event.code.replace("Key", "").toLowerCase();
             target = document.querySelector(`[data-key="${letterPressed}"]`);
             matches = this.activePhrase.checkLetter(letterPressed);
-            console.log(target);
-            console.log(letterPressed);
         }
 
         if(event.type === "click"){
@@ -121,6 +130,10 @@ class Game {
         target.setAttribute("disabled", true);
     } //end handleInteraction
 
+    /***
+    * `resetKeyBoard` method
+    * this method iterates over every key to reset its class and to remove the disabled attribute
+    ***/
     resetKeyboard() {
         const buttons = Array.prototype.slice.call(document.querySelectorAll("[data-key]"));
         buttons.map( button => {
@@ -131,6 +144,11 @@ class Game {
         });
     }
 
+    /***
+    * `resetHearts` method
+    * this method iterates over each heart image to change it to liveHeart.png
+    * this method resets the missed variable
+    ***/
     resetHearts() {
         const img_Scoreboard = document.querySelectorAll("li.tries > img");
         img_Scoreboard.forEach( img => img.setAttribute("src", "images/liveHeart.png"));
@@ -138,6 +156,3 @@ class Game {
     }
 
 } //end Game
-
-// const probando = new Game();
-// probando.startGame();
