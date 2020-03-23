@@ -13,7 +13,7 @@ The player keeps choosing letters until they reveal all the letters in the phras
 
 ## Getting Started
 
-Download the file to and click on the index.html file to start playing
+Download the file and click on the index.html file to start playing
 
 ### Prerequisites
 
@@ -31,7 +31,7 @@ Make sure you have JavaScript enabled on your browser\
 
 ## Authors
 
-* **Luis Giraldo** - *Initial work* - [PurpleBooth](https://github.com/luisgiraldov)
+* **Luis Giraldo** - *Initial work* - (https://github.com/luisgiraldov)
 
 ## License
 
