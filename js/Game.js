@@ -62,6 +62,7 @@ class Game {
 
         //reveal block effect
         gameOverMessage.classList.add("reveal-block");
+        this.playing = false;
     }
 
     /***
